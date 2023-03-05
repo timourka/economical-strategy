@@ -3,30 +3,20 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.UI;
-
+using static workerClass;
 
 public class OfficeManager : MonoBehaviour
 {
-    public struct Worker
-    {
-        public string name;
-        public int idwork;
-        public Sprite namimage;
-    }
-    public Sprite image1 = null;
+    public workerClass workerClassFile;
     public List<Worker> workers = new List<Worker>();
     public bool active = false;
     public int numOfWorkers;
     public GameObject workersPanel = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        Worker worker = new Worker();
-        worker.name = "Власенко Олег Федосович2";
-        worker.idwork = 0;
-        worker.namimage = image1;
-        workers.Add(worker);
-        numOfWorkers = workers.Count;
+        
     }
 
     // Update is called once per frame
@@ -39,6 +29,9 @@ public class OfficeManager : MonoBehaviour
     {
         if (!active)
         {
+            foreach (Worker iterator in workerClassFile.workers)
+                workers.Add(iterator);
+            numOfWorkers = workers.Count;
             active = true;
             workersPanel.SetActive(true);
         }
@@ -46,6 +39,7 @@ public class OfficeManager : MonoBehaviour
         {
             active = false;
             workersPanel.SetActive(false);
+            transform.GetChild(0).GetComponent<Image>().color = Color.white;
         }
     }
     public void OnMouseEnter()
