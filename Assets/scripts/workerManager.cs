@@ -2,27 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static workerClass;
 
-public class workerFHManager : MonoBehaviour
+public class workerManager : MonoBehaviour
 {
     public bool active = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void clicked()
     {
         active = true;
-        transform.GetComponentInParent<hireManager>().hired();
+        transform.GetComponentInParent<scriptOnlyForWorkers>().openWorkerPanel();
     }
     public void OnMouseEnter()
     {

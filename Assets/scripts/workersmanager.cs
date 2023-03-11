@@ -20,6 +20,31 @@ public class workersmanager : MonoBehaviour
             }
         }
     }
+
+    public void updateInfo()
+    {
+        for (int i = 1; i < map.transform.childCount; i++)
+        {
+            if (map.transform.GetChild(i).GetComponent<OfficeManager>().active)
+            {
+                NOW = map.transform.GetChild(i).GetComponent<OfficeManager>().workers.Count;
+                for (int j = 0; j < workers.Count; j++)
+                {
+                    if (j < NOW)
+                    {
+                        workers[j].SetActive(true);
+                        workers[j].transform.GetChild(0).GetComponent<Text>().text = map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].name;
+                        workers[j].transform.GetChild(2).GetComponent<Image>().sprite = map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].namimage;
+                    }
+                    else
+                    {
+                        workers[j].SetActive(false);
+                    }
+                }
+                break;
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,21 +53,8 @@ public class workersmanager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        for (int i = 1; i < map.transform.childCount; i++)
-        {
-            if (map.transform.GetChild(i).GetComponent<OfficeManager>().active)
-            {
-                NOW = map.transform.GetChild(i).GetComponent<OfficeManager>().numOfWorkers;
-                for (int j = 0; j < NOW && j < workers.Count; j++)
-                {
-                    workers[j].SetActive(true);
-                    workers[j].transform.GetChild(0).GetComponent<Text>().text = map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].name;
-                    workers[j].transform.GetChild(2).GetComponent<Image>().sprite = map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].namimage;
-                }
-                break;
-            }
-        }
+        
     }
 }

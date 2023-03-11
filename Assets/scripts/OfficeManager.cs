@@ -29,11 +29,10 @@ public class OfficeManager : MonoBehaviour
     {
         if (!active)
         {
-            foreach (Worker iterator in workerClassFile.workers)
-                workers.Add(iterator);
             numOfWorkers = workers.Count;
             active = true;
             workersPanel.SetActive(true);
+            workersPanel.transform.GetComponent<workersmanager>().updateInfo();
         }
         else
         {
