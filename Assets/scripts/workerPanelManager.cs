@@ -6,12 +6,25 @@ using static workerClass;
 
 public class workerPanelManager : MonoBehaviour
 {
+    public workerClass workerClassFile = null;
     public GameObject workersPanel = null;
     public GameObject map = null;
+    public GameObject tasks = null;
     GameObject activeWorker = null;
     GameObject activeOffice = null;
     Worker worker;
     int index = -1;
+    bool takeT = false;
+    public void ofTakeTask()
+    {
+        takeT = false;
+    }
+
+    public void takeTask()
+    {
+        tasks.GetComponent<tasksManager>().openClose();
+        takeT = !takeT;
+    }
     public void fire()
     {
         activeWorker.GetComponent<workerManager>().active = false;
@@ -41,7 +54,10 @@ public class workerPanelManager : MonoBehaviour
         }
         transform.GetChild(1).GetComponent<Text>().text = worker.name;
         transform.GetChild(3).GetComponent<Text>().text = worker.stage.ToString();
-        transform.GetChild(5).GetComponent<Text>().text = worker.idwork.ToString();
+        if (worker.idwork == -1)
+            transform.GetChild(5).GetComponent<Text>().text = "без работы";
+        else
+            transform.GetChild(5).GetComponent<Text>().text = workerClassFile.tasksCurent[worker.idwork].name;
     }
     public void close()
     {
@@ -56,6 +72,17 @@ public class workerPanelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (takeT)
+        {
+            for (int i = 0; i < tasks.transform.GetChild(2).GetChild(0).childCount; i++)
+            {
+                if (tasks.transform.GetChild(2).GetChild(0).GetChild(i).GetComponent<taskManagerOnly4tasks>().active)
+                {
+                    worker.idwork = i;
+                    workerClassFile.workers[index] = worker;
+                    transform.GetChild(5).GetComponent<Text>().text = workerClassFile.tasksCurent[worker.idwork].name;
+                }
+            }
+        }
     }
 }
