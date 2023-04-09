@@ -23,6 +23,20 @@ public class tasksManager : MonoBehaviour
             gameObject.SetActive(true);
         }
     }
+    public void openClose(bool open)
+    {
+        if (active)
+        {
+            active = false;
+            gameObject.SetActive(false);
+        }
+        if (!active || open)
+        {
+            active = true;
+            gameObject.SetActive(true);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

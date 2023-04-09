@@ -22,7 +22,7 @@ public class workerPanelManager : MonoBehaviour
 
     public void takeTask()
     {
-        tasks.GetComponent<tasksManager>().openClose();
+        tasks.GetComponent<tasksManager>().openClose(true);
         takeT = !takeT;
     }
     public void fire()
@@ -61,6 +61,7 @@ public class workerPanelManager : MonoBehaviour
     }
     public void close()
     {
+        activeWorker.GetComponent<workerManager>().active = false;
         this.gameObject.SetActive(false);
     }
     // Start is called before the first frame update
@@ -78,8 +79,11 @@ public class workerPanelManager : MonoBehaviour
             {
                 if (tasks.transform.GetChild(2).GetChild(0).GetChild(i).GetComponent<taskManagerOnly4tasks>().active)
                 {
+                    tasks.transform.GetChild(2).GetChild(0).GetChild(i).GetComponent<taskManagerOnly4tasks>().active = false;
+                    ofTakeTask();
+                    tasks.GetComponent<tasksManager>().openClose();
                     worker.idwork = i;
-                    workerClassFile.workers[index] = worker;
+                    activeOffice.transform.GetComponent<OfficeManager>().workers[index] = worker;
                     transform.GetChild(5).GetComponent<Text>().text = workerClassFile.tasksCurent[worker.idwork].name;
                 }
             }

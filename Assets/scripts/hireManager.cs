@@ -67,6 +67,8 @@ public class hireManager : MonoBehaviour
                 workerFHs.Add(transform.GetChild(i).gameObject);
                 workerFHs[i].SetActive(true);
                 workerFHs[i].transform.GetChild(0).GetComponent<Text>().text = workerClassFile.workers[i].name;
+                workerFHs[i].transform.GetChild(2).GetComponent<Text>().text = workerClassFile.workers[i].stage.ToString();
+                workerFHs[i].transform.GetChild(4).GetComponent<Text>().text = (workerClassFile.workers[i].stage * 1000).ToString();
                 workerFHs[i].transform.GetChild(5).GetComponent<Image>().sprite = workerClassFile.workers[i].namimage;
             }
         }
