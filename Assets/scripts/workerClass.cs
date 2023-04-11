@@ -7,6 +7,8 @@ using static OfficeManager;
 
 public class workerClass : MonoBehaviour
 {
+    public bool letsStart;
+
     public int timeSpeed;
     public GameObject map;
     public struct Task
@@ -48,34 +50,36 @@ public class workerClass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        letsStart = false;
+
         timeSpeed = 5000;
         {
             Worker worker = new Worker();
-            worker.name = "Власенко Олег Федосович1";
+            worker.name = "Товарищев Товарищ Товарищевич1";
             worker.idwork = -1;
             worker.stage = 1;
             worker.namimage = image1;
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович2";
+            worker.name = "Товарищев Товарищ Товарищевич2";
             worker.namimage = image2;
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович3";
+            worker.name = "Товарищев Товарищ Товарищевич3";
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович4";
+            worker.name = "Товарищев Товарищ Товарищевич4";
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович5";
+            worker.name = "Товарищев Товарищ Товарищевич5";
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович6";
+            worker.name = "Товарищев Товарищ Товарищевич6";
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович7";
+            worker.name = "Товарищев Товарищ Товарищевич7";
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович8";
+            worker.name = "Товарищев Товарищ Товарищевич8";
             workers.Add(worker);
-            worker.name = "Власенко Олег Федосович9";
+            worker.name = "Товарищев Товарищ Товарищевич9";
             worker.stage = 999;
             worker.namimage = image1;
             workerStorage.Add(worker);
-            worker.name = "Воронина";
+            worker.name = "Товарищева Товарка Товарищевна";
             worker.stage = 999;
             worker.namimage = image3;
             workerStorage.Add(worker);
@@ -95,6 +99,10 @@ public class workerClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!letsStart)
+        {
+            return;
+        }
         float time = Time.deltaTime;
         timer += time;
         seconds += time*timeSpeed;

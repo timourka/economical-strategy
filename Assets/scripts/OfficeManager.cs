@@ -11,15 +11,15 @@ public class OfficeManager : MonoBehaviour
     public workerClass workerClassFile;
     public GameObject messedgePanel;
     public List<Worker> workers = new List<Worker>();
-    public bool active = false;
+    public bool active;
     public int numOfWorkers;
     public GameObject workersPanel = null;
-    public bool baught = false;
+    public bool baught;
     public int price;
     // Start is called before the first frame update
     void Start()
     {
-        
+        active = false; baught = false;
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class OfficeManager : MonoBehaviour
         else
         {
             messedgePanel.SetActive(true);
-            messedgePanel.transform.GetChild(0).GetComponent<Text>().text = "Βΰμ νε υβΰςΰες δενεγ!";
+            messedgePanel.transform.GetChild(0).GetComponent<Text>().text = "Π’Π°ΠΌ Π½Πµ Ρ…Π²Π°Ρ‚Π°ΠµΡ‚ Π΄ΠµΠ½ΠµΠ³!";
         }
         transform.GetChild(1).gameObject.SetActive(false);
     }

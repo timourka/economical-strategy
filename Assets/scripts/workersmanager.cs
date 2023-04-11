@@ -14,6 +14,7 @@ public class workersmanager : MonoBehaviour
     {
         for (int i = 1; i < map.transform.childCount; i++)
         {
+        Debug.Log("lol");
             if (map.transform.GetChild(i).GetComponent<OfficeManager>().active)
             {
                 map.transform.GetChild(i).GetComponent<OfficeManager>().clicked();
