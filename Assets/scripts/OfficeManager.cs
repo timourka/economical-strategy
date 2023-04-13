@@ -81,11 +81,11 @@ public class OfficeManager : MonoBehaviour
             }
         }
     }
-    public void OnMouseEnter()
+    public void MouseEnter()
     {
         transform.GetChild(0).GetComponent<Image>().color = Color.green;
     }
-    void OnMouseExit()
+    public void MouseExit()
     {
         if (!active)
         {

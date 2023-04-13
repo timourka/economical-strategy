@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class workersmanager : MonoBehaviour
 {
+    public workerClass workerClassFile;
     private List<GameObject> workers = new List<GameObject>();
     public GameObject map;
     public int NOW;
@@ -35,6 +36,16 @@ public class workersmanager : MonoBehaviour
                     {
                         workers[j].SetActive(true);
                         workers[j].transform.GetChild(0).GetComponent<Text>().text = map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].name;
+                        if (map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].idwork != -1)
+                        {
+                            Debug.Log("занят");
+                            workers[j].transform.GetChild(1).GetComponent<Text>().text = workerClassFile.tasksCurent[map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].idwork].name;
+                        }
+                        else
+                        {
+                            Debug.Log("не занят");
+                            workers[j].transform.GetChild(1).GetComponent<Text>().text = "без работы";
+                        }
                         workers[j].transform.GetChild(2).GetComponent<Image>().sprite = map.transform.GetChild(i).GetComponent<OfficeManager>().workers[j].namimage;
                     }
                     else

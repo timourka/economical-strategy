@@ -23,11 +23,11 @@ public class workerManager : MonoBehaviour
         active = true;
         transform.GetComponentInParent<scriptOnlyForWorkers>().openWorkerPanel();
     }
-    public void OnMouseEnter()
+    public void MouseEnter()
     {
-        transform.GetComponent<Image>().color = Color.black;
+        transform.GetComponent<Image>().color = Color.grey;
     }
-    void OnMouseExit()
+    public void MouseExit()
     {
         transform.GetComponent<Image>().color = Color.white;
     }

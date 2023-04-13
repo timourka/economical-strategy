@@ -58,6 +58,7 @@ public class workerPanelManager : MonoBehaviour
             transform.GetChild(5).GetComponent<Text>().text = "без работы";
         else
             transform.GetChild(5).GetComponent<Text>().text = workerClassFile.tasksCurent[worker.idwork].name;
+        transform.GetChild(7).GetComponent<Text>().text = (worker.stage * 1000).ToString();
     }
     public void close()
     {
@@ -85,6 +86,7 @@ public class workerPanelManager : MonoBehaviour
                     worker.idwork = i;
                     activeOffice.transform.GetComponent<OfficeManager>().workers[index] = worker;
                     transform.GetChild(5).GetComponent<Text>().text = workerClassFile.tasksCurent[worker.idwork].name;
+                    workersPanel.GetComponent<workersmanager>().updateInfo();
                 }
             }
         }

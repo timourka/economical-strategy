@@ -34,8 +34,10 @@ public class hireManager : MonoBehaviour
                         {
                             messedgeBox.GetComponent<messedgeManager>().open("нельзя нанимать больше сотрудников");
                         }
+                        break;
                     }
                 }
+                break;
             }
         }
     }
@@ -60,22 +62,29 @@ public class hireManager : MonoBehaviour
 
     public void updateInfo()
     {
-        if (active)
+        //if (active)
+        Debug.Log("updateInfo");
         {
-            for (int i = 0; i < transform.childCount && i < workerClassFile.workers.Count; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                workerFHs.Add(transform.GetChild(i).gameObject);
-                workerFHs[i].SetActive(true);
-                workerFHs[i].transform.GetChild(0).GetComponent<Text>().text = workerClassFile.workers[i].name;
-                workerFHs[i].transform.GetChild(2).GetComponent<Text>().text = workerClassFile.workers[i].stage.ToString();
-                workerFHs[i].transform.GetChild(4).GetComponent<Text>().text = (workerClassFile.workers[i].stage * 1000).ToString();
-                workerFHs[i].transform.GetChild(5).GetComponent<Image>().sprite = workerClassFile.workers[i].namimage;
+                if (i < workerClassFile.workers.Count)
+                {
+                    workerFHs[i].SetActive(true);
+                    workerFHs[i].transform.GetChild(0).GetComponent<Text>().text = workerClassFile.workers[i].name;
+                    workerFHs[i].transform.GetChild(2).GetComponent<Text>().text = workerClassFile.workers[i].stage.ToString();
+                    workerFHs[i].transform.GetChild(4).GetComponent<Text>().text = (workerClassFile.workers[i].stage * 1000).ToString();
+                    workerFHs[i].transform.GetChild(5).GetComponent<Image>().sprite = workerClassFile.workers[i].namimage;
+                }
+                else
+                {
+                    workerFHs[i].SetActive(false);
+                }
             }
         }
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

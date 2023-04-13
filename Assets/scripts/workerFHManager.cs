@@ -24,11 +24,11 @@ public class workerFHManager : MonoBehaviour
         active = true;
         transform.GetComponentInParent<hireManager>().hired();
     }
-    public void OnMouseEnter()
+    public void MouseEnter()
     {
-        transform.GetComponent<Image>().color = Color.black;
+        transform.GetComponent<Image>().color = Color.grey;
     }
-    void OnMouseExit()
+    public void MouseExit()
     {
         transform.GetComponent<Image>().color = Color.white;
     }

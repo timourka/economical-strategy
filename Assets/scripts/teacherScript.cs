@@ -43,6 +43,7 @@ public class teacherScript : MonoBehaviour
                     break;
                 case 7:
                     videoPlayer.GetComponent<VideoPlayer>().clip = slide8;
+                    teacher.transform.GetChild(1).gameObject.SetActive(false);
                     break;
             }
             teacher.transform.GetChild(2 + slide).gameObject.SetActive(false);
@@ -60,7 +61,6 @@ public class teacherScript : MonoBehaviour
     void Start()
     {
         slide = 1;
-        this.gameObject.SetActive(true);
     }
 
     // Update is called once per frame

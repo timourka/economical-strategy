@@ -8,12 +8,18 @@ public class criditsManager : MonoBehaviour
     public workerClass workerClassFile;
     public long creditSumm = 0;
     public long creditPaySumm = 0;
+
+    public void updateInfo()
+    {
+        transform.GetChild(0).GetComponent<Slider>().maxValue = workerClassFile.maxCredit;
+        transform.GetChild(4).GetComponent<Text>().text = workerClassFile.credit.ToString();
+        transform.GetChild(6).GetComponent<Text>().text = (workerClassFile.credit / 36).ToString();
+        transform.GetChild(9).GetComponent<Slider>().maxValue = (long)Mathf.Min(workerClassFile.credit, workerClassFile.Budget);
+    }
     public void open()
     {
         gameObject.SetActive(true);
-        transform.GetChild(0).GetComponent<Slider>().maxValue = workerClassFile.maxCredit;
-        transform.GetChild(4).GetComponent<Text>().text = workerClassFile.credit.ToString();
-        transform.GetChild(6).GetComponent<Text>().text = (workerClassFile.credit/36).ToString();
+        updateInfo();
     }
     public void close()
     {
@@ -25,10 +31,7 @@ public class criditsManager : MonoBehaviour
         workerClassFile.maxCredit = (long)Mathf.Max(workerClassFile.maxCredit, 0);
         workerClassFile.Budget += creditSumm;
         workerClassFile.credit += creditSumm / 100 * 120;
-        transform.GetChild(0).GetComponent<Slider>().maxValue = workerClassFile.maxCredit;
-        transform.GetChild(4).GetComponent<Text>().text = workerClassFile.credit.ToString();
-        transform.GetChild(6).GetComponent<Text>().text = (workerClassFile.credit / 36).ToString();
-        transform.GetChild(9).GetComponent<Slider>().maxValue = (long)Mathf.Min(workerClassFile.credit, workerClassFile.Budget);
+        updateInfo();
     }
 
     public void updateSumm()
@@ -52,18 +55,12 @@ public class criditsManager : MonoBehaviour
             workerClassFile.maxCredit += 500000;
             workerClassFile.payedCredit = 0;
         }
-        transform.GetChild(0).GetComponent<Slider>().maxValue = workerClassFile.maxCredit;
-        transform.GetChild(4).GetComponent<Text>().text = workerClassFile.credit.ToString();
-        transform.GetChild(6).GetComponent<Text>().text = (workerClassFile.credit / 36).ToString();
-        transform.GetChild(9).GetComponent<Slider>().maxValue = (long)Mathf.Min(workerClassFile.credit, workerClassFile.Budget);
+        updateInfo();
     }
     // Start is called before the first frame update
     void Start()
     {
-        transform.GetChild(0).GetComponent<Slider>().maxValue = workerClassFile.maxCredit;
-        transform.GetChild(4).GetComponent<Text>().text = workerClassFile.credit.ToString();
-        transform.GetChild(6).GetComponent<Text>().text = (workerClassFile.credit / 36).ToString();
-        transform.GetChild(9).GetComponent<Slider>().maxValue = (long)Mathf.Min(workerClassFile.credit, workerClassFile.Budget);
+        updateInfo();
 
     }
 
